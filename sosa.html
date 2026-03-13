@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+overflow:hidden;
+text-align:center;
+}
+
+/* ESTRELLAS */
+
+.estrellas{
+position:fixed;
+width:100%;
+height:100%;
+background:url('lotso.png');
+animation:mover 60s linear infinite;
+z-index:-1;
+}
+
+@keyframes mover{
+from{background-position:0 0;}
+to{background-position:1000px 1000px;}
+}
+
+/* LOTSO */
+
+#inicio img{
+width:280px;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(255,255,255,0.3);
+margin-bottom:20px;
+}
+
+/* CAJA */
+
+#caja{
+font-size:120px;
+cursor:pointer;
+animation:latido 1s infinite;
+}
+
+/* CARTA */
+
+#carta{
+display:none;
+background:white;
+color:#ff4d6d;
+padding:40px;
+border-radius:15px;
+font-size:24px;
+cursor:pointer;
+animation:abrirCarta 1s;
+}
+
+/* MENSAJE */
+
+#mensaje{
+display:none;
+}
+
+#mensaje h1{
+font-size:60px;
+animation:latido 1s infinite;
+}
+
+/* FLECHA */
+
+.flecha{
+font-size:60px;
+cursor:pointer;
+margin-top:20px;
+animation:flotar 1.5s infinite;
+}
+
+/* MENSAJE FINAL */
+
+#segunda{
+display:none;
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+/* CORAZONES */
+
+.corazon{
+position:absolute;
+font-size:30px;
+animation:volar 2s linear forwards;
+}
+
+/* LLUVIA */
+
+.lluvia{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:caer 5s linear infinite;
+}
+
+/* ANIMACIONES */
+
+@keyframes latido{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+@keyframes flotar{
+0%{transform:translateY(0);}
+50%{transform:translateY(10px);}
+100%{transform:translateY(0);}
+}
+
+@keyframes abrirCarta{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+@keyframes volar{
+0%{transform:translateY(0) scale(0.5);opacity:1;}
+100%{transform:translateY(-300px) scale(1.5);opacity:0;}
+}
+
+@keyframes caer{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="estrellas"></div>
+
+<!-- INICIO -->
+
+<div id="inicio">
+
+<img src="lotso.png">
+
+<div id="caja" onclick="abrirCaja()">🎁</div>
+
+<p>Toca el regalo 😏</p>
+
+</div>
+
+<!-- CARTA -->
+
+<div id="carta" onclick="abrirCarta()">
+💌 Ábreme
+</div>
+
+<!-- MENSAJE -->
+
+<div id="mensaje">
+
+<h1 id="teamo">❤️ TQM SONIAA ❤️</h1>
+
+<img src="lotso.png" onclick="lanzarCorazones()">
+
+<p>(Toca a Lotso 🧸)</p>
+
+<div class="flecha" onclick="segunda()">⬇</div>
+
+</div>
+
+<!-- FINAL -->
+
+<div id="segunda">
+
+<h2>🍦 Vamos a comer Bogati mañana o las banderillas que tanto querias probar?? jaja</h2>
+<h1>TQM ❤️</h1>
+
+</div>
+
+<audio id="musica" loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<script>
+
+function abrirCaja(){
+document.getElementById("inicio").style.display="none";
+document.getElementById("carta").style.display="block";
+}
+
+function abrirCarta(){
+document.getElementById("carta").style.display="none";
+document.getElementById("mensaje").style.display="block";
+document.getElementById("musica").play();
+lluvia();
+explosion();
+}
+
+function segunda(){
+document.getElementById("mensaje").style.display="none";
+document.getElementById("segunda").style.display="flex";
+}
+
+function lanzarCorazones(){
+
+for(let i=0;i<10;i++){
+
+let corazon=document.createElement("div");
+
+corazon.className="corazon";
+
+corazon.innerHTML="❤️";
+
+corazon.style.left=(window.innerWidth/2)+"px";
+corazon.style.top=(window.innerHeight/2)+"px";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>{corazon.remove();},2000);
+
+}
+
+}
+
+function lluvia(){
+
+setInterval(()=>{
+
+let c=document.createElement("div");
+
+c.className="lluvia";
+
+c.innerHTML="💖";
+
+c.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{c.remove();},5000);
+
+},300);
+
+}
+
+function explosion(){
+
+for(let i=0;i<25;i++){
+
+let e=document.createElement("div");
+
+e.className="corazon";
+
+e.innerHTML="❤️";
+
+e.style.left=(window.innerWidth/2)+"px";
+e.style.top=(window.innerHeight/2)+"px";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{e.remove();},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
